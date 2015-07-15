@@ -19,7 +19,9 @@
     "test": "node ./node_modules/mocha/bin/mocha --recursive -R dot -u tdd"
   },
   "dependencies": {
-    "@inappcloud/stack": "git://github.com/inappcloud/stack.git#master"
+    "@inappcloud/stack": "git://github.com/inappcloud/stack.git#master",
+    "@inappcloud/stack-array": "git://github.com/inappcloud/stack-array.git#master",
+    "lodash": "^3.10.0"
   },
   "devDependencies": {
     "mocha": "^2.2.5"

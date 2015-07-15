@@ -1,15 +1,16 @@
 var assert = require('assert');
 var test = require('mocha').test;
 var filesystem = require('..');
+var _ = require('lodash');
 
 var testCases = [
   {
-    name: 'readFile',
-    args: { file: 'test/fixtures/fixture.txt', output: 'file' },
-    output: 'Hello World!\n'
+    name: 'readFilesInDir',
+    args: { path: 'test/fixtures', output: 'files' },
+    output: ['Hello World!\n', 'Foobar\n']
   },
   {
-    name: 'readFile#no-args',
+    name: 'readFilesInDir#no-args',
     args: {},
     output: 'error'
   }
@@ -17,9 +18,9 @@ var testCases = [
 
 testCases.forEach(function(testCase) {
   test(testCase.name, function(done) {
-    filesystem.readFile({}, testCase.args).then(function(ctx) {
+    filesystem.readFilesInDir({}, testCase.args).then(function(ctx) {
       if (testCase.output !== 'error') {
-        assert.equal(ctx[testCase.args.output], testCase.output);
+        assert.ok(_.isEqual(ctx[testCase.args.output], testCase.output), 'expected: ' + testCase.output + ', got: ' + ctx[testCase.args.output]);
         done();
       } else {
         done(new Error('Function should have returned an error'));
@@ -28,7 +29,7 @@ testCases.forEach(function(testCase) {
       if (testCase.output === 'error') {
         done();
       } else {
-        done(ctx.error);
+        done(ctx.error || ctx);
       }
     });
   });
