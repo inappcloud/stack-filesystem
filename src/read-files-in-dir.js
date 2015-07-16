@@ -24,7 +24,7 @@ module.exports = {
           return path.join(args.path, file);
         });
 
-        array.map({}, { array: filePaths, fn: filesystem.readFile, data: 'file', output: 'readFiles' }).then(function(c) {
+        array.map({}, { array: filePaths, fn: filesystem.readFile, data: 'path', output: 'readFiles' }).then(function(c) {
           done(c.readFiles);
         }).catch(function(maperr) {
           error(maperr);

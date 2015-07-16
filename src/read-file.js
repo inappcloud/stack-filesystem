@@ -2,7 +2,7 @@ module.exports = {
   name: 'readFile',
 
   args: {
-    file: {
+    path: {
       example: '_posts/hello-world.txt',
       required: true
     }
@@ -11,7 +11,7 @@ module.exports = {
   call: function(args, done, error) {
     var fs = require('fs');
 
-    fs.readFile(args.file, 'utf8', function(err, data) {
+    fs.readFile(args.path, 'utf8', function(err, data) {
       if (err) {
         error(err);
       } else {

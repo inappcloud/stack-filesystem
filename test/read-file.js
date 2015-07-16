@@ -5,7 +5,7 @@ var filesystem = require('..');
 var testCases = [
   {
     name: 'readFile',
-    args: { file: 'test/fixtures/fixture.txt', output: 'file' },
+    args: { path: 'test/fixtures/fixture.txt', output: 'file' },
     output: 'Hello World!\n'
   },
   {
