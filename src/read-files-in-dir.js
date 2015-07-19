@@ -8,26 +8,25 @@ module.exports = {
     }
   },
 
-  call: function(args, done, error) {
-    var _ = require('lodash');
+  call: function(args, done) {
     var fs = require('fs');
     var path = require('path');
 
-    var array = require('@inappcloud/stack-array');
-    var filesystem = require('..');
+    var map = require('@inappcloud/stack-array').map;
+    var readFile = require('..').readFile;
 
     fs.readdir(args.path, function(err, files) {
       if (err) {
-        error(err);
+        done(err);
       } else {
-        var filePaths = _.map(files, function(file) {
+        var filePaths = files.map(function(file) {
           return path.join(args.path, file);
         });
 
-        array.map({}, { array: filePaths, fn: filesystem.readFile, data: 'path', output: 'readFiles' }).then(function(c) {
-          done(c.readFiles);
-        }).catch(function(maperr) {
-          error(maperr);
+        map({ array: filePaths, fn: function(x) { return readFile({ path: x }); } }).then(function(v) {
+          done(v);
+        }).catch(function(e) {
+          done(e);
         });
       }
     });

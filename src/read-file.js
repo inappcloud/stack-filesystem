@@ -8,12 +8,12 @@ module.exports = {
     }
   },
 
-  call: function(args, done, error) {
+  call: function(args, done) {
     var fs = require('fs');
 
     fs.readFile(args.path, 'utf8', function(err, data) {
       if (err) {
-        error(err);
+        done(err);
       } else {
         done(data);
       }

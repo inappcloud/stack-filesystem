@@ -1,11 +1,7 @@
-var assert = require('assert');
-var test = require('mocha').test;
-var filesystem = require('..');
-
 var testCases = [
   {
     name: 'readFile',
-    args: { path: 'test/fixtures/fixture.txt', output: 'file' },
+    args: { path: 'test/fixtures/fixture.txt' },
     output: 'Hello World!\n'
   },
   {
@@ -15,21 +11,4 @@ var testCases = [
   }
 ];
 
-testCases.forEach(function(testCase) {
-  test(testCase.name, function(done) {
-    filesystem.readFile({}, testCase.args).then(function(ctx) {
-      if (testCase.output !== 'error') {
-        assert.equal(ctx[testCase.args.output], testCase.output);
-        done();
-      } else {
-        done(new Error('Function should have returned an error'));
-      }
-    }).catch(function(ctx) {
-      if (testCase.output === 'error') {
-        done();
-      } else {
-        done(ctx.error);
-      }
-    });
-  });
-});
+require('./util').runTests(require('..').readFile, testCases);

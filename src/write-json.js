@@ -13,12 +13,12 @@ module.exports = {
     }
   },
 
-  call: function(args, done, error) {
+  call: function(args, done) {
     var fs = require('fs');
 
     fs.writeFile(args.path, JSON.stringify(args.data), 0, 'utf8', function(err, written, data) {
       if (err) {
-        error(err);
+        done(err);
       } else {
         done(data);
       }
