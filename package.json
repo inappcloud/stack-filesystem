@@ -20,8 +20,7 @@
   },
   "dependencies": {
     "@inappcloud/stack": "git://github.com/inappcloud/stack.git#master",
-    "@inappcloud/stack-array": "git://github.com/inappcloud/stack-array.git#master",
-    "lodash": "^3.10.0"
+    "@inappcloud/stack-array": "git://github.com/inappcloud/stack-array.git#master"
   },
   "devDependencies": {
     "mocha": "^2.2.5"
