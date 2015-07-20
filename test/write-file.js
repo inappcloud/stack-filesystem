@@ -11,6 +11,6 @@ var testCases = [
   }
 ];
 
-require('./util').runTests(require('..').writeFile, testCases, function(testCase) {
+require('@inappcloud/stack-test').runTests(require('..').writeFile, testCases, function(testCase) {
   require('fs').unlinkSync(testCase.args.path);
 });

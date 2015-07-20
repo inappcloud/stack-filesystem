@@ -11,4 +11,4 @@ var testCases = [
   }
 ];
 
-require('./util').runTests(require('..').readFile, testCases);
+require('@inappcloud/stack-test').runTests(require('..').readFile, testCases);
